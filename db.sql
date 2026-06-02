@@ -89,8 +89,6 @@ CREATE TABLE Tournament (
 CREATE TABLE Tournament_match (
     id_match INT NOT NULL,
     id_tournament INT NOT NULL,
-    id_team1 INT NOT NULL,
-    id_team2 INT NOT NULL,
 
     PRIMARY KEY (id_match, id_tournament),
 
