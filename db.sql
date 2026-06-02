@@ -97,12 +97,3 @@ CREATE TABLE Tournament_match (
     FOREIGN KEY (id_match) REFERENCES Match_Table(id_match),
     FOREIGN KEY (id_tournament) REFERENCES Tournament(id_tournament)
 );
-    
-CREATE TABLE Message (
-	id_comment INT AUTO_INCREMENT PRIMARY KEY,
-    id_match INT NOT NULL,
-    id_user INT NOT NULL,
-    message VARCHAR(200),
-    FOREIGN KEY (id_user) REFERENCES User(id_user),
-    FOREIGN KEY (id_match) REFERENCES Match_Table(id_match)
-);
