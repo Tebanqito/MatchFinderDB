@@ -39,6 +39,7 @@ CREATE TABLE Team_11 (
     id_player8 INT,
     id_player9 INT,
     id_player10 INT,
+    id_player11 INT,
 
     FOREIGN KEY (id_admin) REFERENCES User(id_user),
     FOREIGN KEY (id_player2) REFERENCES User(id_user),
@@ -49,7 +50,8 @@ CREATE TABLE Team_11 (
     FOREIGN KEY (id_player7) REFERENCES User(id_user),
     FOREIGN KEY (id_player8) REFERENCES User(id_user),
     FOREIGN KEY (id_player9) REFERENCES User(id_user),
-    FOREIGN KEY (id_player10) REFERENCES User(id_user)
+    FOREIGN KEY (id_player10) REFERENCES User(id_user),
+    FOREIGN KEY (id_player11) REFERENCES User(id_user)
 );
 
 CREATE TABLE Friend (
@@ -64,8 +66,12 @@ CREATE TABLE Friend (
 
 CREATE TABLE Request (
     id_request INT AUTO_INCREMENT PRIMARY KEY,
+    id_sender INT NOT NULL,
+    id_reciever INT NOT NULL,
     request_status VARCHAR(50) NOT NULL,
-    request_description TEXT
+    request_description TEXT,
+    FOREIGN KEY (id_sender) REFERENCES User(id_user),
+    FOREIGN KEY (id_reciever) REFERENCES User(id_user)
 );
 
 CREATE TABLE Match_Table (
@@ -90,4 +96,13 @@ CREATE TABLE Tournament_match (
 
     FOREIGN KEY (id_match) REFERENCES Match_Table(id_match),
     FOREIGN KEY (id_tournament) REFERENCES Tournament(id_tournament)
+);
+    
+CREATE TABLE Message (
+	id_comment INT AUTO_INCREMENT PRIMARY KEY,
+    id_match INT NOT NULL,
+    id_user INT NOT NULL,
+    message VARCHAR(200),
+    FOREIGN KEY (id_user) REFERENCES User(id_user),
+    FOREIGN KEY (id_match) REFERENCES Match_Table(id_match)
 );
