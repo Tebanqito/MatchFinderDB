@@ -3,7 +3,7 @@ USE MatchFinderDB;
 
 CREATE TABLE User (
     idUser INT AUTO_INCREMENT PRIMARY KEY,
-    useNme VARCHAR(100) NOT NULL,
+    useName VARCHAR(100) NOT NULL,
     userEmail VARCHAR(150) NOT NULL UNIQUE,
     userPassword VARCHAR(255) NOT NULL
 );
