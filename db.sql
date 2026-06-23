@@ -77,7 +77,7 @@ CREATE TABLE Request (
 CREATE TABLE MatchTable (
     idMatch INT AUTO_INCREMENT PRIMARY KEY,
     idTeam1 INT NOT NULL,
-    idTeam2 INT NOT NULL
+    idTeam2 INT
 );
 
 CREATE TABLE Tournament (
