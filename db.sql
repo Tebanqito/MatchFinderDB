@@ -1,97 +1,97 @@
-CREATE DATABASE tournament_db;
-USE tournament_db;
+CREATE DATABASE MatchFinderDB;
+USE MatchFinderDB;
 
 CREATE TABLE User (
-    id_user INT AUTO_INCREMENT PRIMARY KEY,
-    user_name VARCHAR(100) NOT NULL,
-    user_email VARCHAR(150) NOT NULL UNIQUE,
-    user_password VARCHAR(255) NOT NULL
+    idUser INT AUTO_INCREMENT PRIMARY KEY,
+    useNme VARCHAR(100) NOT NULL,
+    userEmail VARCHAR(150) NOT NULL UNIQUE,
+    userPassword VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Team_5 (
-    id_team INT AUTO_INCREMENT PRIMARY KEY,
-    id_admin INT NOT NULL,
-    team_name VARCHAR(100) NOT NULL,
-    team_description TEXT,
+CREATE TABLE Team5 (
+    idTeam INT AUTO_INCREMENT PRIMARY KEY,
+    idAdmin INT NOT NULL,
+    teamName VARCHAR(100) NOT NULL,
+    teamDescription TEXT,
 
-    id_player2 INT,
-    id_player3 INT,
-    id_player4 INT,
+    idPlayer2 INT,
+    idPlayer3 INT,
+    idPlayer4 INT,
 
-    FOREIGN KEY (id_admin) REFERENCES User(id_user),
-    FOREIGN KEY (id_player2) REFERENCES User(id_user),
-    FOREIGN KEY (id_player3) REFERENCES User(id_user),
-    FOREIGN KEY (id_player4) REFERENCES User(id_user)
+    FOREIGN KEY (idAdmin) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer2) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer3) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer4) REFERENCES User(idUser)
 );
 
-CREATE TABLE Team_11 (
-    id_team INT AUTO_INCREMENT PRIMARY KEY,
-    id_admin INT NOT NULL,
-    team_name VARCHAR(100) NOT NULL,
-    team_description TEXT,
+CREATE TABLE Team11 (
+    idTeam INT AUTO_INCREMENT PRIMARY KEY,
+    idAdmin INT NOT NULL,
+    teamName VARCHAR(100) NOT NULL,
+    teamDescription TEXT,
 
-    id_player2 INT,
-    id_player3 INT,
-    id_player4 INT,
-    id_player5 INT,
-    id_player6 INT,
-    id_player7 INT,
-    id_player8 INT,
-    id_player9 INT,
-    id_player10 INT,
-    id_player11 INT,
+    idPlayer2 INT,
+    idPlayer3 INT,
+    idPlayer4 INT,
+    idPlayer5 INT,
+    idPlayer6 INT,
+    idPlayer7 INT,
+    idPlayer8 INT,
+    idPlayer9 INT,
+    idPlayer10 INT,
+    idPlayer11 INT,
 
-    FOREIGN KEY (id_admin) REFERENCES User(id_user),
-    FOREIGN KEY (id_player2) REFERENCES User(id_user),
-    FOREIGN KEY (id_player3) REFERENCES User(id_user),
-    FOREIGN KEY (id_player4) REFERENCES User(id_user),
-    FOREIGN KEY (id_player5) REFERENCES User(id_user),
-    FOREIGN KEY (id_player6) REFERENCES User(id_user),
-    FOREIGN KEY (id_player7) REFERENCES User(id_user),
-    FOREIGN KEY (id_player8) REFERENCES User(id_user),
-    FOREIGN KEY (id_player9) REFERENCES User(id_user),
-    FOREIGN KEY (id_player10) REFERENCES User(id_user),
-    FOREIGN KEY (id_player11) REFERENCES User(id_user)
+    FOREIGN KEY (idAdmin) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer2) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer3) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer4) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer5) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer6) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer7) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer8) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer9) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer10) REFERENCES User(idUser),
+    FOREIGN KEY (idPlayer11) REFERENCES User(idUser)
 );
 
 CREATE TABLE Friend (
-    id_user INT NOT NULL,
-    id_friend INT NOT NULL,
+    idUser INT NOT NULL,
+    idFriend INT NOT NULL,
 
-    PRIMARY KEY (id_user, id_friend),
+    PRIMARY KEY (idUser, idFriend),
 
-    FOREIGN KEY (id_user) REFERENCES User(id_user),
-    FOREIGN KEY (id_friend) REFERENCES User(id_user)
+    FOREIGN KEY (idUser) REFERENCES User(idUser),
+    FOREIGN KEY (idFriend) REFERENCES User(idUser)
 );
 
 CREATE TABLE Request (
-    id_request INT AUTO_INCREMENT PRIMARY KEY,
-    id_sender INT NOT NULL,
-    id_reciever INT NOT NULL,
-    request_status VARCHAR(50) NOT NULL,
-    request_description TEXT,
-    FOREIGN KEY (id_sender) REFERENCES User(id_user),
-    FOREIGN KEY (id_reciever) REFERENCES User(id_user)
+    idRequest INT AUTO_INCREMENT PRIMARY KEY,
+    idSender INT NOT NULL,
+    idReceiver INT NOT NULL,
+    requestStatus BOOLEAN DEFAULT FALSE,
+    requestDescription TEXT,
+    FOREIGN KEY (idSender) REFERENCES User(idUser),
+    FOREIGN KEY (idReceiver) REFERENCES User(idUser)
 );
 
-CREATE TABLE Match_Table (
-    id_match INT AUTO_INCREMENT PRIMARY KEY,
-    id_team1 INT NOT NULL,
-    id_team2 INT NOT NULL
+CREATE TABLE MatchTable (
+    idMatch INT AUTO_INCREMENT PRIMARY KEY,
+    idTeam1 INT NOT NULL,
+    idTeam2 INT NOT NULL
 );
 
 CREATE TABLE Tournament (
-    id_tournament INT AUTO_INCREMENT PRIMARY KEY,
-    teams_quantity INT NOT NULL,
-    tournament_type VARCHAR(50) NOT NULL
+    idTournament INT AUTO_INCREMENT PRIMARY KEY,
+    teamsQuantity INT NOT NULL,
+    tournamentType VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE Tournament_match (
-    id_match INT NOT NULL,
-    id_tournament INT NOT NULL,
-
-    PRIMARY KEY (id_match, id_tournament),
-
-    FOREIGN KEY (id_match) REFERENCES Match_Table(id_match),
-    FOREIGN KEY (id_tournament) REFERENCES Tournament(id_tournament)
+CREATE TABLE TournamentMatch (
+    idMatch INT NOT NULL,
+    idTournament INT NOT NULL,
+    
+    PRIMARY KEY (idMatch, idTournament),
+    
+    FOREIGN KEY (idMatch) REFERENCES MatchTable(idMatch),
+    FOREIGN KEY (idTournament) REFERENCES Tournament(idTournament)
 );
